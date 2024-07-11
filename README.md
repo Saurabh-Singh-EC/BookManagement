@@ -11,7 +11,7 @@
   * Get book by id and get all
 
 ### Technologies Used
-* Java 17, Spring boot 3.2.5, Spring security, Spring Data JPA
+* Java 17, Maven 3.9.6, Spring boot 3.2.5, Spring security, Spring Data JPA
 * JWT authentication and authorization.
 * H2 in memory database
 * Spring Kafka Producer and Consumer
