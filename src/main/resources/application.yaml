@@ -1,0 +1,45 @@
+server:
+  port: 9291
+
+jwt:
+  secret: thisismysuoercomplexcodewithsrbsecret
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:mainDB
+  jpa:
+    jmx:
+      enabled: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  kafka:
+    bootstrap-servers: http://localhost:9092
+    listener:
+      ack-mode: manual_immediate
+      type: batch
+    producer:
+      keySerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      valueSerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: http://localhost:8081
+    consumer:
+      key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-poll-records: 500
+      fetch-max-wait: 5000
+      fetch-min-size: 10000
+      isolation-level: read_committed
+      properties:
+        specific.avro.reader: true
+        schema.registry.url: http://localhost:8081
+      topic: dev.codeWithSrb.inputOutput
+      group-id: dev.codeWithSrb.consumer.v1
+
+kafka:
+  topics:
+    inputOutputTopic: dev.codeWithSrb.inputOutput
+    errorTopic: dev.codeWithSrb.error

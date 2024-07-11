@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testDB
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+  kafka:
+    bootstrap-servers: http://localhost:9092
+    listener:
+      ack-mode: manual_immediate
+      type: batch
+    consumer:
+      key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      topic: dev.codeWithSrb.test.topic
+      group-id: dev.codeWithSrb.test.consumer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      properties:
+        schema.registry.url: http://localhost:8081
+        specific.avro.reader: true
+    producer:
+      keySerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      valueSerializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: http://localhost:8081
+
+kafka:
+  topics:
+    inputOutputTopic: dev.codeWithSrb.test.topic
+    errorTopic: dev.codeWithSrb.test.error.topic

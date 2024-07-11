@@ -1,0 +1,12 @@
+{
+  "namespace": "com.codewithsrb.BookManagement.schema",
+  "type": "record",
+  "name": "BookKey",
+  "doc": "Book detail key",
+  "fields": [
+    {
+      "name": "BookId",
+      "type": "int"
+    }
+  ]
+}

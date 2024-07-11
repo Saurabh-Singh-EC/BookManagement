@@ -1,0 +1,27 @@
+{
+  "namespace": "com.codewithsrb.BookManagement.schema",
+  "type": "record",
+  "name": "BookValue",
+  "doc": "Book detail value",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "default": "None"
+    },
+    {
+      "name": "author",
+      "type": "string",
+      "default": "None"
+    },
+    {
+      "name": "bookLanguage",
+      "type": "string",
+      "default": "None"
+    },
+    {
+      "name": "price",
+      "type": "double"
+    }
+  ]
+}
